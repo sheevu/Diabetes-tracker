@@ -3,16 +3,60 @@
 @tailwind utilities;
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
 body {
   margin: 0;
-  background: #F4F7F5;
+  background-color: #F8FAF9;
   color: #0F172A;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+.dark body {
+  background-color: #080D1A;
+  color: #F1F5F9;
+}
+
 button, input, textarea, select { font: inherit; }
 button { touch-action: manipulation; }
-.card { @apply bg-white rounded-[24px] sm:rounded-[28px] border-[1.5px] border-[#E6ECEA] shadow-[0_8px_32px_rgba(0,0,0,0.06)]; }
-.btn-teal { @apply bg-[#219EBC] text-white font-bold rounded-2xl hover:bg-[#1F8FA3] disabled:opacity-50 transition; }
-.btn-lime { @apply bg-[#C6E423] text-black font-extrabold rounded-full hover:bg-[#BEEA00] disabled:opacity-50 transition; }
-.safe-bottom { padding-bottom: max(7rem, env(safe-area-inset-bottom)); }
+
+/* Enhanced Cards */
+.card {
+  @apply bg-white dark:bg-[#0F182E]/90 dark:backdrop-blur-md rounded-[24px] sm:rounded-[28px] border-[1.5px] border-[#E2E8F0] dark:border-slate-800/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] transition-all;
+}
+
+.card-hover {
+  @apply hover:border-teal-500/50 hover:shadow-lg transition-all duration-200;
+}
+
+.btn-teal {
+  @apply bg-[#219EBC] text-white font-bold rounded-2xl hover:bg-[#1A829B] active:scale-[0.98] disabled:opacity-50 transition-all shadow-sm;
+}
+
+.btn-lime {
+  @apply bg-[#C6E423] text-slate-900 font-extrabold rounded-full hover:bg-[#B5D21E] active:scale-[0.98] disabled:opacity-50 transition-all shadow-[0_4px_16px_rgba(198,228,35,0.35)];
+}
+
+.safe-bottom {
+  padding-bottom: max(6.5rem, calc(env(safe-area-inset-bottom) + 5.5rem));
+}
+
+/* Print Styles for Clinical Doctor Summary Export */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print, nav, header, button {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+}
