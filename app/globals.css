@@ -1,0 +1,8 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body { background:#F4F7F5; font-family: Inter, system-ui, sans-serif; }
+.card { @apply bg-white rounded-[28px] border-[1.5px] border-[#E6ECEA] shadow-[0_8px_32px_rgba(0,0,0,0.06)]; }
+.btn-teal { @apply bg-[#219EBC] text-white font-bold rounded-2xl hover:bg-[#1F8FA3] transition; }
+.btn-lime { @apply bg-[#C6E423] text-black font-extrabold rounded-full hover:bg-[#BEEA00] transition; }
