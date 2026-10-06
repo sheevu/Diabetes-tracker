@@ -58,9 +58,13 @@ create table if not exists public.user_settings (
   language text not null default 'en' check (language in ('en','hi')),
   target_low integer not null default 70 check (target_low between 20 and 300),
   target_high integer not null default 180 check (target_high between 40 and 600),
+  unit text not null default 'mg/dL' check (unit in ('mg/dL','mmol/L')),
   sheet_id text,
   updated_at timestamptz not null default now()
 );
+
+-- Migration for existing databases
+alter table public.user_settings add column if not exists unit text not null default 'mg/dL';
 
 alter table public.user_settings enable row level security;
 
